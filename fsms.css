@@ -1,0 +1,41 @@
+body {
+	margin:0;
+	padding:5px 10px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	color:#333;
+}
+a {
+	text-decoration: none;
+	color: #9C1B6D;
+}
+section.centred {
+	display:block;
+	text-align:center;
+	padding:10px auto;
+}
+#links ul {
+	list-style-type: none;
+	padding:0;
+}
+#links ul li {
+	font-size:1.2em;
+	display:inline;
+}
+@media (max-width: 449px) {
+	#links ul li {
+		display:block;
+	}
+}
+@media (min-width: 450px) {
+	#links ul li+li:before {
+		content: "|";
+		padding:0 5px;
+		color:#999;
+	}
+}
+h1 {
+
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+}
