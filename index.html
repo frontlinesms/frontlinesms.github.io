@@ -42,7 +42,6 @@
 				elapsed = new Date().getTime() - initTime;
 				currentColour = "rgba(156, 27, 109, " + transf(0.0, 1.0, 0, animationLength/2)  +")";
 				if (ctx){
-					ctx.clearRect(0,0, 208, 240);
 					var grd=ctx.createLinearGradient(0,0,transf(180, 208, 0, 1400), transf(200, 240, 0, 1400));
 					grd.addColorStop(0,"rgba(156, 27, 109, 255)");
 					grd.addColorStop(0.5,currentColour);
@@ -50,12 +49,12 @@
 
 
 					var thickness = 8;
-					ctx.clearRect(0,0, 208, 240);
 					ctx.beginPath();
 					ctx.lineWidth = thickness;
 					ctx.strokeStyle = grd;
 					// Start from callout
 					ctx.setTransform(1, 0, 0, 1, 0, 0);
+					ctx.clearRect(0,0, 208, 240);
 					ctx.moveTo(155 + thickness/2,225 + thickness/2);
 					ctx.lineTo(transf(155, 140, 0, 100) + thickness/2,transf(225, 200, 0, 100) + thickness/2);
 					if (elapsed > 100) {
@@ -96,6 +95,7 @@
 					//Rotate
 					ctx.translate(100 + thickness/2, 100 + thickness/2);
 					ctx.rotate(transf(0.0, 2 * Math.PI, 0, 1200));
+					ctx.scale(transf(0.7, 1.0, 0, 1200),transf(0.7, 1.0, 0, 1200));
 					ctx.translate(-108, -120);
 					ctx.font = "145px FontAwesome";
 					ctx.fillStyle = grd;
