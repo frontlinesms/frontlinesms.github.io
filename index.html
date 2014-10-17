@@ -6,7 +6,7 @@
 		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 		<script type="text/javascript">
 			var elapsed;
-			var animationLength = 3000;
+			var animationLength = 1400;
 			var initTime;
 			var intrvl;
 			var canvas;
@@ -40,13 +40,16 @@
 			};
 			function draw() {
 				elapsed = new Date().getTime() - initTime;
+				currentColour = "rgba(156, 27, 109, " + transf(0.0, 1.0, 0, animationLength/2)  +")";
 				if (ctx){
 					ctx.clearRect(0,0, 208, 240);
+
+
 					var thickness = 8;
 					ctx.clearRect(0,0, 208, 240);
 					ctx.beginPath();
 					ctx.lineWidth = thickness;
-					ctx.strokeStyle = '#9C1B6D';
+					ctx.strokeStyle = currentColour;
 					// Start from callout
 					ctx.setTransform(1, 0, 0, 1, 0, 0);
 					ctx.moveTo(155 + thickness/2,225 + thickness/2);
@@ -89,30 +92,16 @@
 					//Rotate
 					ctx.translate(-1, -17);
 					ctx.translate(108, 120);
-					ctx.rotate(transf(0.0, Math.PI, 0, animationLength));
+					ctx.rotate(transf(0.0, Math.PI, 0, 1200));
 					ctx.translate(-108, -120);
 					ctx.font = "140px FontAwesome";
-					ctx.fillStyle = "#9C1B6D";
+					ctx.fillStyle = currentColour;
 					ctx.fillText("\uf013", 48, 170);
 					ctx.translate(108, 120);
-					ctx.rotate(transf(0.0, 0-(Math.PI), 0, animationLength));
+					ctx.rotate(transf(0.0, 0-(Math.PI), 0, 1200));
 					ctx.translate(-108, -120);
 					ctx.translate(1, 17);
 
-					/*
-					ctx.moveTo(10 + thickness/2,0 + thickness/2);
-					ctx.lineTo(190 + thickness/2,0 + thickness/2);
-					ctx.arc(190 + thickness/2, 10 + thickness/2, 10, 1.5 * Math.PI, 0, false);
-					ctx.lineTo(200 + thickness/2,190 + thickness/2);
-					ctx.arc(190 + thickness/2, 190 + thickness/2, 10, 0, 0.5 * Math.PI, false);
-					ctx.lineTo(170 + thickness/2,200 + thickness/2);
-					ctx.lineTo(155 + thickness/2,225 + thickness/2);
-					ctx.lineTo(140 + thickness/2,200 + thickness/2);
-					ctx.lineTo(10 + thickness/2,200 + thickness/2);
-					ctx.arc(10 + thickness/2, 190 + thickness/2, 10, 0.5 * Math.PI, Math.PI, false);
-					ctx.lineTo(0 + thickness/2,10 + thickness/2);
-					ctx.arc(10 + thickness/2, 10 + thickness/2, 10, Math.PI, 1.5 * Math.PI, false);
-					*/
 				}
 				if(elapsed < animationLength) {
 					animate();
