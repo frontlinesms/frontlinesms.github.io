@@ -43,13 +43,17 @@
 				currentColour = "rgba(156, 27, 109, " + transf(0.0, 1.0, 0, animationLength/2)  +")";
 				if (ctx){
 					ctx.clearRect(0,0, 208, 240);
+					var grd=ctx.createLinearGradient(0,0,transf(180, 208, 0, 1400), transf(200, 240, 0, 1400));
+					grd.addColorStop(0,"rgba(156, 27, 109, 255)");
+					grd.addColorStop(0.5,currentColour);
+					grd.addColorStop(1,"rgba(156, 27, 109, 255)");
 
 
 					var thickness = 8;
 					ctx.clearRect(0,0, 208, 240);
 					ctx.beginPath();
 					ctx.lineWidth = thickness;
-					ctx.strokeStyle = currentColour;
+					ctx.strokeStyle = grd;
 					// Start from callout
 					ctx.setTransform(1, 0, 0, 1, 0, 0);
 					ctx.moveTo(155 + thickness/2,225 + thickness/2);
@@ -94,7 +98,7 @@
 					ctx.rotate(transf(0.0, 2 * Math.PI, 0, 1200));
 					ctx.translate(-108, -120);
 					ctx.font = "145px FontAwesome";
-					ctx.fillStyle = currentColour;
+					ctx.fillStyle = grd;
 					ctx.fillText("\uf013", 52, 174);
 					ctx.translate(100, 100);
 					ctx.rotate(transf(0.0, 0-(2 * Math.PI), 0, 1200));
