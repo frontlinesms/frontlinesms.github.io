@@ -37,12 +37,24 @@ section.centred {
 	#links ul li {
 		display:block;
 	}
+	#animatedLogo {
+		display:none;
+	}
+	#logo {
+		display:inline;
+	}
 }
 @media (min-width: 450px) {
 	#links ul li+li:before {
 		content: "|";
 		padding:0 5px;
 		color:#999;
+	}
+	#logo {
+		display:none;
+	}
+	#animatedLogo {
+		display:inline;
 	}
 }
 section.grid ol {
