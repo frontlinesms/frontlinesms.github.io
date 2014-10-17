@@ -27,6 +27,17 @@
 			function animate() {
 				requestAnimationFrame(draw);
 			};
+			function transfEasingDecelerate(startPos, endPos, startFrame, endFrame) {
+				if(elapsed < startFrame) {
+					return startPos;
+				}
+				else if(endFrame < elapsed) {
+					return endPos;
+				}
+				else {
+					return startPos + ((endPos - startPos) * Math.pow((elapsed - startFrame) / (endFrame - startFrame), transf(1.0, 0.1, startFrame, endFrame)));
+				}
+			};
 			function transf(startPos, endPos, startFrame, endFrame) {
 				if(elapsed < startFrame) {
 					return startPos;
@@ -94,14 +105,13 @@
 
 					//Rotate
 					ctx.translate(100 + thickness/2, 100 + thickness/2);
-					ctx.rotate(transf(0.0, 2 * Math.PI, 0, 1200));
-					ctx.scale(transf(0.7, 1.0, 0, 1200),transf(0.7, 1.0, 0, 1200));
+					ctx.rotate(transfEasingDecelerate(0.0, 2 * Math.PI, 0, 1350));
 					ctx.translate(-108, -120);
 					ctx.font = "145px FontAwesome";
 					ctx.fillStyle = grd;
 					ctx.fillText("\uf013", 52, 174);
 					ctx.translate(100, 100);
-					ctx.rotate(transf(0.0, 0-(2 * Math.PI), 0, 1200));
+					ctx.rotate(transfEasingDecelerate(0.0, 0-(2 * Math.PI), 0, 1200));
 					ctx.translate(-(108 + thickness/2), -(120 + thickness/2));
 
 				}
