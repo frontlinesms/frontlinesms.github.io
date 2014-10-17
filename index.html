@@ -3,9 +3,10 @@
 		<title>FrontlineSMS Developers</title>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="fsms.css" />
+		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 		<script type="text/javascript">
 			var elapsed;
-			var animationLength = 2000;
+			var animationLength = 3000;
 			var initTime;
 			var intrvl;
 			var canvas;
@@ -47,10 +48,9 @@
 					ctx.lineWidth = thickness;
 					ctx.strokeStyle = '#9C1B6D';
 					// Start from callout
-					if(true) {
-						ctx.moveTo(155 + thickness/2,225 + thickness/2);
-						ctx.lineTo(transf(155, 140, 0, 100) + thickness/2,transf(225, 200, 0, 100) + thickness/2);
-					}
+					ctx.setTransform(1, 0, 0, 1, 0, 0);
+					ctx.moveTo(155 + thickness/2,225 + thickness/2);
+					ctx.lineTo(transf(155, 140, 0, 100) + thickness/2,transf(225, 200, 0, 100) + thickness/2);
 					if (elapsed > 100) {
 						ctx.lineTo(transf(140, 10, 100, 300) + thickness/2,200 + thickness/2);
 					}
@@ -84,6 +84,21 @@
 					if(elapsed > 1200) {
 						ctx.lineTo(transf(155, 140, 1200, 1350) + thickness/2,transf(225, 200, 1200, 1350) + thickness/2);
 					}
+					ctx.stroke();
+
+					//Rotate
+					ctx.translate(-1, -17);
+					ctx.translate(108, 120);
+					ctx.rotate(transf(0.0, Math.PI, 0, animationLength));
+					ctx.translate(-108, -120);
+					ctx.font = "140px FontAwesome";
+					ctx.fillStyle = "#9C1B6D";
+					ctx.fillText("\uf013", 48, 170);
+					ctx.translate(108, 120);
+					ctx.rotate(transf(0.0, 0-(Math.PI), 0, animationLength));
+					ctx.translate(-108, -120);
+					ctx.translate(1, 17);
+
 					/*
 					ctx.moveTo(10 + thickness/2,0 + thickness/2);
 					ctx.lineTo(190 + thickness/2,0 + thickness/2);
@@ -98,7 +113,6 @@
 					ctx.lineTo(0 + thickness/2,10 + thickness/2);
 					ctx.arc(10 + thickness/2, 10 + thickness/2, 10, Math.PI, 1.5 * Math.PI, false);
 					*/
-					ctx.stroke();
 				}
 				if(elapsed < animationLength) {
 					animate();
