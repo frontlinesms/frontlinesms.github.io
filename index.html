@@ -3,10 +3,103 @@
 		<title>FrontlineSMS Developers</title>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="fsms.css" />
+		<script type="text/javascript">
+			var elapsed;
+			var animationLength = 2000;
+			var initTime;
+			var intrvl;
+			var canvas;
+			var ctx;
+			var requestAnimFrame = (function(callback) {
+				return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+				function(callback) {
+					window.setTimeout(callback, 1000 / 60);
+				};
+			})();
+			function init() {
+				elapsed = 0;
+				initTime = new Date().getTime();
+				canvas = document.getElementById('animatedLogo');
+				ctx = canvas.getContext('2d');
+				animate();
+			};
+			function animate() {
+				requestAnimationFrame(draw);
+			};
+			function transf(startPos, endPos, startFrame, endFrame) {
+				if(elapsed < startFrame) {
+					return startPos;
+				}
+				else if(endFrame < elapsed) {
+					return endPos;
+				}
+				else {
+					return startPos + ((endPos - startPos) * (elapsed - startFrame) / (endFrame - startFrame));
+				}
+			};
+			function draw() {
+				elapsed = new Date().getTime() - initTime;
+				if (ctx){
+					ctx.clearRect(0,0, 208, 240);
+					var thickness = 8;
+					ctx.clearRect(0,0, 208, 240);
+					ctx.beginPath();
+					ctx.lineWidth = thickness;
+					ctx.strokeStyle = '#9C1B6D';
+					// Start from callout
+					if(true) {
+						ctx.moveTo(155 + thickness/2,225 + thickness/2);
+						ctx.lineTo(transf(155, 140, 0, 100) + thickness/2,transf(225, 200, 0, 100) + thickness/2);
+					}
+					if (elapsed > 100) {
+						ctx.lineTo(transf(140, 10, 100, 300) + thickness/2,200 + thickness/2);
+					}
+					if(elapsed > 300) {
+						ctx.arc(10 + thickness/2, 190 + thickness/2, 10, 0.5 * Math.PI, transf(0.5 * Math.PI, Math.PI, 300, 350), false);
+					}
+					if(elapsed > 350) {
+						ctx.lineTo(0 + thickness/2,transf(190, 10, 350, 550) + thickness/2);
+					}
+					if(elapsed > 550) {
+						ctx.arc(10 + thickness/2, 10 + thickness/2, 10, Math.PI, transf(Math.PI, 1.5 * Math.PI, 550, 600), false);
+					}
+					if(elapsed > 600) {
+						ctx.lineTo(transf(10, 190, 600, 800) + thickness/2,0 + thickness/2);
+					}
+					if(elapsed > 800) {
+						ctx.arc(190 + thickness/2, 10 + thickness/2, 10, 1.5 * Math.PI, 0, false);
+						ctx.lineTo(200 + thickness/2,190 + thickness/2);
+						ctx.arc(190 + thickness/2, 190 + thickness/2, 10, 0, 0.5 * Math.PI, false);
+						ctx.lineTo(170 + thickness/2,200 + thickness/2);
+						ctx.lineTo(155 + thickness/2,225 + thickness/2);
+						ctx.lineTo(140 + thickness/2,200 + thickness/2);
+					}
+					/*
+					ctx.moveTo(10 + thickness/2,0 + thickness/2);
+					ctx.lineTo(190 + thickness/2,0 + thickness/2);
+					ctx.arc(190 + thickness/2, 10 + thickness/2, 10, 1.5 * Math.PI, 0, false);
+					ctx.lineTo(200 + thickness/2,190 + thickness/2);
+					ctx.arc(190 + thickness/2, 190 + thickness/2, 10, 0, 0.5 * Math.PI, false);
+					ctx.lineTo(170 + thickness/2,200 + thickness/2);
+					ctx.lineTo(155 + thickness/2,225 + thickness/2);
+					ctx.lineTo(140 + thickness/2,200 + thickness/2);
+					ctx.lineTo(10 + thickness/2,200 + thickness/2);
+					ctx.arc(10 + thickness/2, 190 + thickness/2, 10, 0.5 * Math.PI, Math.PI, false);
+					ctx.lineTo(0 + thickness/2,10 + thickness/2);
+					ctx.arc(10 + thickness/2, 10 + thickness/2, 10, Math.PI, 1.5 * Math.PI, false);
+					*/
+					ctx.stroke();
+				}
+				if(elapsed < animationLength) {
+					animate();
+				}
+			}
+		</script>
 	</head>
 	<body>
 		<section id="header" class="centred">
-			<img src="images/devlogo.png"/>
+			<canvas id="animatedLogo" width="208" height="240">
+			</canvas>
 			<h1>FrontlineSMS Dev Team</h1>
 		</section>
 		<section id="intro" class="centred">
@@ -85,5 +178,8 @@
 			<p>We're always looking for good developers, and people with the skills and experience to bring the best out of them. You can find the latest news on all vacancies on <a href="http://www.frontlinesms.com/connect-with-us/jobs-and-internships/">our organisation website</a>, or you can send an email to <a href="mailto:dev-jobs@frontlinesms.com">dev-jobs@frontlinesms.com</a>.
 			</p>
 		</section>
+		<script type="text/javascript">
+			(function() { init(); })();
+		</script>
 	</body>
 </html>
