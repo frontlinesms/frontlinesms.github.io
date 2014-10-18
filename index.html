@@ -3,6 +3,7 @@
 		<title>FrontlineSMS Developers</title>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="fsms.css" />
+		<link rel="stylesheet" href="css/font-awesome.min.css">
 		<script type="text/javascript" src="FontLoader.js"></script>
 		<script type="text/javascript">
 			var elapsed;
@@ -204,24 +205,12 @@
 			<p>We're always looking for good developers, and people with the skills and experience to bring the best out of them. You can find the latest news on all vacancies on <a href="http://www.frontlinesms.com/connect-with-us/jobs-and-internships/">our organisation website</a>, or you can send an email to <a href="mailto:dev-jobs@frontlinesms.com">dev-jobs@frontlinesms.com</a>.
 			</p>
 		</section>
+		<div id="fa-hidden"><i class="fa fa-cog"></i></div>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script type="text/javascript">
-			var fontLoader = new FontLoader(["FontAwesome", "Open Sans"], {
-				"fontsLoaded": function(error) {
-					if (error !== null) {
-						// Reached the timeout but not all fonts were loaded
-						console.log(error.message);
-						console.log(error.notLoadedFontFamilies);
-					} else {
-						// All fonts were loaded
-						console.log("all fonts were loaded");
-						init();
-					}
-					},
-					"fontLoaded": function(fontFamily) {
-						// One of the fonts was loaded
-					}
-				}, 5000);
-				fontLoader.loadFonts();
+			$(window).bind("load", function() {
+				init();
+			});
 		</script>
 	</body>
 </html>
